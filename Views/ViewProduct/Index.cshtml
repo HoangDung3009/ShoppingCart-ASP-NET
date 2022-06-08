@@ -1,0 +1,24 @@
+﻿@model IEnumerable<eCommerce.Models.Product>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    @foreach (var item in Model)
+    {
+        if (item.IsAvailable)
+        {
+            <div class="card m-4" style="width:200px">
+                <a asp-controller="ViewProduct" asp-action="Details" asp-route-id="@item.Id"><img class="card-img-top" src="~/images/products/@item.Thumbnail" alt="Card image"></a>
+                <div class="card-body">
+                    <h4 class="card-title">@item.Name</h4>
+                    <p class="card-text">@item.Price vnđ</p>
+                    <a href="#" class="btn btn-primary">Chi tiết</a>
+                </div>
+            </div>
+        }
+
+    }
+</div>
+
+    <partial name="_PagingXTL" model="@ViewBag.PagingModel" />

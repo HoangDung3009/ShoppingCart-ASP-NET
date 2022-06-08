@@ -1,0 +1,72 @@
+﻿@model IEnumerable<eCommerce.Models.Product>
+
+@{
+    ViewData["Title"] = "Sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Sản phẩm</h1>
+
+<p>
+    <a asp-action="Create">Thêm sản phẩm</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tên
+            </th>
+            <th>
+                Đơn giá
+            </th>
+            <th>
+                Tình trạng
+            </th>
+            <th>
+                Mô tả
+            </th>
+            <th>
+                Tags
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+
+                <td>
+                    @if (item.IsAvailable)
+                    {
+                        <div>Có sẵn</div>
+                    }
+                    else
+                    {
+                        <div>Không có sẵn</div>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tags.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Sửa</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Chi tiết</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<partial name="_PagingXTL" model="@ViewBag.PagingModel" />

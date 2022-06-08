@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService authorizeService
+
+@{ 
+    var user = await authorizeService.AuthorizeAsync(this.User, "ViewManageMenu");
+}
+
+@if (user.Succeeded)
+{ 
+<li class="nav-item">
+    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Product" asp-action="Index">Sản phẩm</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Category" asp-action="Index">Danh mục</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Tag" asp-action="Index">Tag</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link text-dark" asp-area="Identity" asp-controller="User" asp-action="Index">Người dùng</a>
+</li>
+}

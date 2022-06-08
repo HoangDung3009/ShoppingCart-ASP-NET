@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService authorizeService
+
+@{ 
+    var user = await authorizeService.AuthorizeAsync(this.User, "MemberMenu");
+}
+
+@if (user.Succeeded)
+{ 
+<li class="nav-item">
+    <a class="nav-link text-dark" asp-controller="ViewProduct" asp-action="Index">Sản phẩm</a>
+</li>
+
+}

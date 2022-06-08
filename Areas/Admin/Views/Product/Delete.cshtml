@@ -1,0 +1,18 @@
+﻿@model eCommerce.Models.Product
+
+@{
+    ViewData["Title"] = "Xóa sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Xóa sản phẩm</h1>
+
+<h3>Bạn có muốn xóa sản phẩm?</h3>
+<div>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Xóa" class="btn btn-danger" /> |
+        <a asp-action="Index">Quay lại</a>
+    </form>
+</div>
